@@ -79,4 +79,31 @@ public class Repository {
        pstmt.executeUpdate();
      } 
   }
+
+  public List<Student> getStudents() throws SQLException {
+     List<Student> students = new ArrayList<>();
+     String sql = "SELECT * FROM students ORDER BY student_id";
+    
+     try (Statement stmt = connection.createStatement();
+          ResultSet rs = stmt.executeQuery(sql)) {
+       
+       while (rs.next()) {
+         Student student = new Student.Builder()
+                 .id(rs.getInt("student_id"))
+                 .firstName(rs.getString("first_name"))
+                 .middleName(rs.getString("middle_name"))
+                 .lastName(rs.getString("last_name"))
+                 .age(rs.getInt("age"))
+                 .gender(rs.getString("gender"))
+                 .address(rs.getString("address"))
+                 .contactNumber(rs.getString("contact_number"))
+                 .email(rs.getString("email"))
+                 .course(rs.getString("course"))
+                 .build();
+        students.add(student);
+     }
+   }
+   return students;
+ }
+  
 }
