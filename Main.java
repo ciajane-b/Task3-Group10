@@ -86,5 +86,31 @@ public class Main {
             System.out.print("Enter Course: ");
             String course = scanner.nextLine();
 
+             // Using Builder pattern with method chaining
+            Student student = new Student.Builder()
+                    .id(id)
+                    .firstName(firstName)
+                    .middleName(middleName.isEmpty() ? null : middleName)
+                    .lastName(lastName)
+                    .age(age)
+                    .gender(gender)
+                    .address(address)
+                    .contactNumber(contactNumber)
+                    .email(email)
+                    .course(course)
+                    .build();
+
+            repository.saveStudent(student);
+            System.out.println("Student added successfully!");
+
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid input format. Please enter valid numbers for ID and Age.");
+        } catch (SQLException e) {
+            System.err.println("Error saving student: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.err.println("Validation error: " + e.getMessage());
+        }
+    }
+
 }
 
