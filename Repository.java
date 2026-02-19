@@ -106,4 +106,30 @@ public class Repository {
    return students;
  }
   
+ public Student getStudentById(int id) throws SQLException {
+   String sql = "SELECT * FROM students WHERE student_id = ?";
+   
+   try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setInt(1, id);
+        try (ResultSet rs = pstmt.executeQuery()) {
+           if (rs.next()) {
+             return new Student.Builder()
+                       .id(rs.getInt("student_id"))
+                       .firstName(rs.getString("first_name"))
+                       .middleName(rs.getString("middle_name"))
+                       .lastName(rs.getString("last_name"))
+                       .age(rs.getInt("age"))
+                       .gender(rs.getString("gender"))
+                       .address(rs.getString("address"))
+                       .contactNumber(rs.getString("contact_number"))
+                       .email(rs.getString("email"))
+                       .course(rs.getString("course"))
+                       .build();
+         }
+       }
+   }
+   return null;
+ }
+
+  
 }
