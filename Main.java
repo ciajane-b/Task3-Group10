@@ -50,5 +50,41 @@ public class Main {
             }
             scanner.close();
         }
-    }                  
+    }
+
+     private static void addNewStudent(Scanner scanner, Repository repository) {
+        try {
+            System.out.println("\n--- Add New Student ---");
+
+            System.out.print("Enter Student ID: ");
+            int id = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Enter First Name: ");
+            String firstName = scanner.nextLine();
+
+            System.out.print("Enter Middle Name (press Enter if none): ");
+            String middleName = scanner.nextLine();
+
+            System.out.print("Enter Last Name: ");
+            String lastName = scanner.nextLine();
+
+            System.out.print("Enter Age: ");
+            int age = Integer.parseInt(scanner.nextLine());
+
+            System.out.print("Enter Gender: ");
+            String gender = scanner.nextLine();
+
+            System.out.print("Enter Address: ");
+            String address = scanner.nextLine();
+
+            System.out.print("Enter Contact Number: ");
+            String contactNumber = scanner.nextLine();
+
+            System.out.print("Enter Email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Enter Course: ");
+            String course = scanner.nextLine();
+
 }
+
