@@ -132,6 +132,7 @@ public class Main {
             System.err.println("Error retrieving students: " + e.getMessage());
         }
     }
+    
     private static void searchStudentById(Scanner scanner, Repository repository) {
         try {
             System.out.print("\nEnter Student ID to search: ");
@@ -150,6 +151,24 @@ public class Main {
             System.err.println("Invalid ID format. Please enter a valid number.");
         } catch (SQLException e) {
             System.err.println("Error searching for student: " + e.getMessage());
+        }
+    }
+    
+     private static void deleteAllStudents(Repository repository) {
+        try {
+            System.out.print("\nAre you sure you want to delete all students? (yes/no): ");
+            Scanner scanner = new Scanner(System.in);
+            String confirmation = scanner.nextLine();
+
+            if (confirmation.equalsIgnoreCase("yes")) {
+                repository.deleteAllStudents();
+                System.out.println("All students have been deleted.");
+            } else {
+                System.out.println("Operation cancelled.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting students: " + e.getMessage());
         }
     }
 }
