@@ -53,5 +53,76 @@ public class Student {
                 .add("course='" + course + "'")
                 .toString();
     }
-  
+
+  // Static Builder Class
+    public static class Builder {
+        private int id;
+        private String firstName;
+        private String middleName;
+        private String lastName;
+        private int age;
+        private String gender;
+        private String address;
+        private String contactNumber;
+        private String email;
+        private String course;
+
+        public Builder id(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder middleName(String middleName) {
+            this.middleName = middleName;
+            return this;
+        }
+
+        public Builder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder gender(String gender) {
+            this.gender = gender;
+            return this;
+        }
+
+        public Builder address(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder contactNumber(String contactNumber) {
+            this.contactNumber = contactNumber;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder course(String course) {
+            this.course = course;
+            return this;
+        }
+
+        public Student build() {
+            // Validate required fields
+            if (firstName == null || lastName == null) {
+                throw new IllegalStateException("First name and last name are required");
+            }
+            return new Student(this);
+        }
+    }
 }
