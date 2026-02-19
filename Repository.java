@@ -57,5 +57,26 @@ public class Repository {
       }    
     }
  }
- 
+
+  public void saveStudent(Student student) throws SQLException {
+     String sql = """
+       INSERT INTO students (student_id, first_name, middle_name, last_name, age, gender,
+                             address, contact_number, email, course)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+       """;
+    
+    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+       pstmt.setInt(1, student.getId());
+       pstmt.setString(2, student.getFirstName());
+       pstmt.setString(3, student.getMiddleName());
+       pstmt.setString(4, student.getLastName());
+       pstmt.setInt(5, student.getAge());
+       pstmt.setString(6, student.getGender());
+       pstmt.setString(7, student.getAddress());
+       pstmt.setString(8, student.getContactNumber());
+       pstmt.setString(9, student.getEmail());
+       pstmt.setString(10, student.getCourse());
+       pstmt.executeUpdate();
+     } 
+  }
 }
