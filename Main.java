@@ -132,4 +132,24 @@ public class Main {
             System.err.println("Error retrieving students: " + e.getMessage());
         }
     }
+    private static void searchStudentById(Scanner scanner, Repository repository) {
+        try {
+            System.out.print("\nEnter Student ID to search: ");
+            int id = Integer.parseInt(scanner.nextLine());
+
+            Student student = repository.getStudentById(id);
+
+            if (student != null) {
+                System.out.println("\n--- Student Found ---");
+                System.out.println(student);
+            } else {
+                System.out.println("Student with ID " + id + " not found.");
+            }
+
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid ID format. Please enter a valid number.");
+        } catch (SQLException e) {
+            System.err.println("Error searching for student: " + e.getMessage());
+        }
+    }
 }
