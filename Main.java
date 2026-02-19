@@ -111,6 +111,25 @@ public class Main {
             System.err.println("Validation error: " + e.getMessage());
         }
     }
+    
+    private static void viewAllStudents(Repository repository) {
+        try {
+            List<Student> students = repository.getStudents();
 
+            if (students.isEmpty()) {
+                System.out.println("\nNo students found in the database.");
+                return;
+            }
+
+            System.out.println("\n--- All Students ---");
+            for (Student student : students) {
+                System.out.println(student);
+                System.out.println("-------------------");
+            }
+            System.out.println("Total students: " + students.size());
+
+        } catch (SQLException e) {
+            System.err.println("Error retrieving students: " + e.getMessage());
+        }
+    }
 }
-
