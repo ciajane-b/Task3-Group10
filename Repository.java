@@ -28,6 +28,34 @@ public class Repository {
   try (Statement stmt = connection.createStatement()) {
   stmt.execute(sql);
  }
+
+ // New method to add a default student
+ private void addDefaultStudent() throws SQLException {
+   // Check if table is empty
+     String countSql = "SELECT COUNT(*) FROM students";
+     try (Statement stmt = connection.createStatement();
+       ResultSet rs = stmt.executeQuery(countSql)) {
+       
+       if (rs.next() && rs.getInt(1) == 0) {
+         // Create a default student using Builder pattern
+         Student defaultStudent = new Student.Builder()
+           .id(1001)
+           .firstName("Juan")
+           .middleName("Santos")
+           .lastName("Dela Cruz")
+           .age(20)
+           .gender("Male")
+           .address("123 Rizal St., Manila")
+           .contactNumber("09123456789")
+           .email("juan.delacruz@email.com")
+           .course("Computer Science")
+           .build();
+         
+         // Save the default student
+         saveStudent(defaultStudent);
+         System.out.println("Default student added to database successfully!");
+      }    
+    }
+ }
  
-  
 }
