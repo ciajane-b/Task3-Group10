@@ -131,5 +131,20 @@ public class Repository {
    return null;
  }
 
+ public void deleteAllStudents() throws SQLException {
+   String sql = "DELETE FROM students";
+   try (Statement stmt = connection.createStatement()) {
+       stmt.executeUpdate(sql);
+   }
+ }
   
+ public void closeConnection() {
+   if (connection != null) {
+     try {
+         connection.close();
+     } catch (SQLException e) {
+         System.err.println("Error closing connection: " + e.getMessage());
+     }
+    }
+  }  
 }
