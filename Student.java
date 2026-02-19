@@ -25,5 +25,17 @@ public class Student {
         this.email = builder.email;
         this.course = builder.course;
     }
+  
+  // Getters
+    public int getId() { return id; }
+    public String getFirstName() { return firstName; }
+    public String getMiddleName() { return middleName; }
+    public String getLastName() { return lastName; }
+    public int getAge() { return age; }
+    public String getGender() { return gender; }
+    public String getAddress() { return address; }
+    public String getContactNumber() { return contactNumber; }
+    public String getEmail() { return email; }
+    public String getCourse() { return course; }
 
 }
