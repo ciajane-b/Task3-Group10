@@ -38,4 +38,20 @@ public class Student {
     public String getEmail() { return email; }
     public String getCourse() { return course; }
 
+  @Override
+    public String toString() {
+        return new StringJoiner(", ", Student.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("firstName='" + firstName + "'")
+                .add("middleName='" + middleName + "'")
+                .add("lastName='" + lastName + "'")
+                .add("age=" + age)
+                .add("gender='" + gender + "'")
+                .add("address='" + address + "'")
+                .add("contactNumber='" + contactNumber + "'")
+                .add("email='" + email + "'")
+                .add("course='" + course + "'")
+                .toString();
+    }
+  
 }
